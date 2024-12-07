@@ -47,6 +47,29 @@ namespace Codigo2024Clase33.Controllers
 
         }
 
+        [HttpPost]
+        public bool InsertarGrupo(List< Cliente> clientes)
+        {
+            try
+            {
+                _context.Clientes.AddRange(clientes);
+                _context.SaveChanges();
+               
+                return true;
+
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+        }
+
+
+
+
+
+
 
         [HttpPut]
         public bool Actualizar(Cliente cliente)
