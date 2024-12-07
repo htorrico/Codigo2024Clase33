@@ -3,6 +3,7 @@ using Codigo2024Clase33.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Codigo2024Clase33.Migrations
 {
     [DbContext(typeof(DemoContex))]
-    partial class DemoContexModelSnapshot : ModelSnapshot
+    [Migration("20241207025657_v2 Agregar campos nuevos")]
+    partial class v2Agregarcamposnuevos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
