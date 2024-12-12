@@ -53,8 +53,10 @@ namespace Codigo2024Clase33.Controllers
         
 
         [HttpPost]
-        public bool Insertar(ProductoRequestV1 request)
+        public ResponseBase Insertar(ProductoRequestV1 request)
         {
+            ResponseBase response = new ResponseBase();
+
             try
             {
                 //Convertir mi request a mi modelo
@@ -62,19 +64,24 @@ namespace Codigo2024Clase33.Controllers
                 {
                     Nombre = request.Nombre,
                     Descripcion = request.Descripcion,
-                    Precio = request.Precio,
+                    Precio =Convert.ToDecimal( request.Precio),
                     Activo = true
                 };
 
-
                 _context.Productos.Add(producto);
                 _context.SaveChanges();
-                return true;
+                
+                response.Mensaje = "Registro Exitoso";
+                response.CodigoError = 0;
+
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return false;
+
+                response.Mensaje = ex.ToString();
+                response.CodigoError = -100;
             }
+            return response;
 
         }
 

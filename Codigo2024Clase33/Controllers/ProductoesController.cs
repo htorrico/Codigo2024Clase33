@@ -33,10 +33,10 @@ namespace Codigo2024Clase33.Controllers
         {
             var producto = await _context.Productos.FindAsync(id);
 
-            if (producto == null)
-            {
-                return NotFound();
-            }
+            //if (producto == null)
+            //{
+            //    return NotFound();
+            //}
 
             return producto;
         }
