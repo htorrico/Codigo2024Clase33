@@ -12,7 +12,7 @@ namespace Codigo2024Clase33.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server=DESKTOP-BCQFL9J\\SQLEXPRESS; " +
-                "Database=Codigo2024DB; Integrated Security=True;" +
+                "Database=Codigo2024DB2; Integrated Security=True;" +
                 "Trust Server Certificate=True ");
         }
     }

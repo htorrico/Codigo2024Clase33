@@ -43,5 +43,10 @@ namespace Codigo2024Clase33.Controllers
 
         }
 
+
+        //1.Listar todos los detalles donde el precio venta este entre 2 valores
+        //2.Listar todos los detalles donde subtotal>Valor,
+        //Subtotal= PrecioVenta*Cantidad
+
     }
 }
