@@ -4,6 +4,7 @@ using Codigo2024Clase33.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Codigo2024Clase33.Migrations
 {
     [DbContext(typeof(DemoContex))]
-    partial class DemoContexModelSnapshot : ModelSnapshot
+    [Migration("20241212002759_v4_Agregar tabla factura")]
+    partial class v4_Agregartablafactura
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
