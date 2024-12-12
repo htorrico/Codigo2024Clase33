@@ -11,42 +11,44 @@ namespace Codigo2024Clase33.Controllers
     [ApiController]
     public class ProductosCustomController : ControllerBase
     {
-        private readonly DemoContex _context;
-
-        public ProductosCustomController(DemoContex context)
-        {
-            _context = context;
-        }
-
+        
         [HttpGet]
         public List<ProductoResponseV1> ListarProductosStock()
         {
-           
-            var productos= _context.Productos.ToList();
-
-            var response = productos.Select(x => new ProductoResponseV1
+         
+            using (var _context = new DemoContex())
             {
-                Nombre = x.Nombre,
-                Stock = x.Stock
-            }).ToList();
+                var productos = _context.Productos.ToList();
 
-            return response;
+                var response = productos.Select(x => new ProductoResponseV1
+                {
+                    Nombre = x.Nombre,
+                    Stock = x.Stock
+                }).ToList();
+
+                return response;
+            }
+
+            
         }
 
 
         [HttpGet]
         public List<ProductoResponseV2> ListarProductosFechaVencimiento()
         {
-
-            var productos = _context.Productos.ToList();
-
-            var response = productos.Select(x => new ProductoResponseV2
+            using (var _context = new DemoContex())
             {
-                Nombre = x.Nombre,
-                FechaNacimiento = x.FechaVencimiento
-            }).ToList();
 
-            return response;
+                var productos = _context.Productos.ToList();
+
+                var response = productos.Select(x => new ProductoResponseV2
+                {
+                    Nombre = x.Nombre,
+                    FechaNacimiento = x.FechaVencimiento
+                }).ToList();
+
+                return response;
+            }
         }
 
 
@@ -59,22 +61,25 @@ namespace Codigo2024Clase33.Controllers
 
             try
             {
-                //Convertir mi request a mi modelo
-                Producto producto = new Producto
+
+                using (var _context = new DemoContex())
                 {
-                    Nombre = request.Nombre,
-                    Descripcion = request.Descripcion,
-                    Precio =Convert.ToDecimal( request.Precio),
-                    Activo = true
-                };
+                    //Convertir mi request a mi modelo
+                    Producto producto = new Producto
+                    {
+                        Nombre = request.Nombre,
+                        Descripcion = request.Descripcion,
+                        Precio = Convert.ToDecimal(request.Precio),
+                        Activo = true
+                    };
 
-                _context.Productos.Add(producto);
-                _context.SaveChanges();
-                
-                response.Mensaje = "Registro Exitoso";
-                response.CodigoError = 0;
+                    _context.Productos.Add(producto);
+                    _context.SaveChanges();
 
-            }
+                    response.Mensaje = "Registro Exitoso";
+                    response.CodigoError = 0;
+                }
+                }
             catch (Exception ex)
             {
 
@@ -90,14 +95,19 @@ namespace Codigo2024Clase33.Controllers
         {
             try
             {
-                var producto = _context.Productos.Find(request.Id);
-                
-                producto.Precio = request.Precio;
-                
-                _context.Entry(producto).State = EntityState.Modified;
+                using (var _context = new DemoContex())
+                {
 
-                _context.SaveChanges();
-                return true;
+
+                    var producto = _context.Productos.Find(request.Id);
+
+                    producto.Precio = request.Precio;
+
+                    _context.Entry(producto).State = EntityState.Modified;
+
+                    _context.SaveChanges();
+                    return true;
+                }
             }
             catch (Exception)
             {
@@ -111,14 +121,17 @@ namespace Codigo2024Clase33.Controllers
         {
             try
             {
-                var producto = _context.Productos.Find(request.Id);
+                using (var _context = new DemoContex())
+                {
+                    var producto = _context.Productos.Find(request.Id);
 
-                producto.Stock = request.Stock;
+                    producto.Stock = request.Stock;
 
-                _context.Entry(producto).State = EntityState.Modified;
+                    _context.Entry(producto).State = EntityState.Modified;
 
-                _context.SaveChanges();
-                return true;
+                    _context.SaveChanges();
+                    return true;
+                }
             }
             catch (Exception)
             {

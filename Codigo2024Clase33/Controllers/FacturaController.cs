@@ -2,6 +2,7 @@
 using Codigo2024Clase33.Requests;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Codigo2024Clase33.Controllers
 {
@@ -38,6 +39,7 @@ namespace Codigo2024Clase33.Controllers
             }
             catch (Exception)
             {
+                
                 return false;
             }
 

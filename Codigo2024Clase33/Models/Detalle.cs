@@ -13,8 +13,8 @@ namespace Codigo2024Clase33.Models
         public int ProductoID { get; set; }
         public Producto Producto { get; set; }
 
-        public int? FacturaID { get; set; }
-        public Factura? Factura { get; set; }
+        public int FacturaID { get; set; }
+        public Factura Factura { get; set; }
 
     }
 }

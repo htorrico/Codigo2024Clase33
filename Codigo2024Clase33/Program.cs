@@ -10,7 +10,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //Instanciar mi base de datos!!
-builder.Services.AddSingleton<DemoContex>();
+//builder.Services.AddSingleton<DemoContex>();
 
 var app = builder.Build();
 
